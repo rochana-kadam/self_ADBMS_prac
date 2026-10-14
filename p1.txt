@@ -1,0 +1,63 @@
+-- level 1
+create database college_db;
+use college_db;
+create table student (student_id int, first_name varchar(30), last_name varchar(30), age int, city varchar(30));
+show databases;
+desc student;
+show create table student; #*****
+
+-- level 2
+alter table student add email varchar(50);
+alter table student add (phone_no int, joining_year int);
+alter table student modify first_name text;
+alter table student modify last_name varchar(100);
+alter table student rename column first_name to f_name;
+alter table student drop phone_no;
+rename table student to student_details; #****
+rename table student_details to student; #****
+
+-- level 3
+create table employee (emp_id int, first_name varchar(30), last_name varchar(30), department varchar(30));
+desc employee;
+insert into employee values(101, "raj", "sharma", "technical");
+insert into employee (emp_id, first_name, last_name,department) values 
+(102,"tom", "cruise" , "management"),
+(103,"jerry", "holand" , "security"),
+(104,"tina", "shah" , "makeup"),
+(105,"shilpa", "kadam" , "management"); #****  default
+select * from employee;
+
+update employee set department="IT" where emp_id=102;
+alter table employee add age int;
+update employee set age=30, department="HR" where emp_id=103;
+
+delete from employee where emp_id=104;
+truncate table employee; #****
+
+-- level 4
+alter table student modify student_id int not null; #****
+alter table employee modify emp_id int unique;
+alter table student modify student_id int primary key;
+
+create table candidate (cid int,cname varchar(30), age int check (age>=18)); #**** after the table is created 
+show create table candidate;
+
+insert into candidate values(101, "john", 20);
+insert into candidate values(101, "john", 10);
+
+alter table employee add salary int check (salary >=5000);
+show create table employee;
+
+alter table employee drop check employee_chk_1;
+
+alter table employee add constraint chk_age_salary check (age>20 and salary >= 10000); #*****
+alter table employee drop check chk_age_salary;
+
+create table staff (staff_id int, staff_name varchar(30), department varchar(30) default "operation");
+desc staff;
+insert into staff (staff_id, staff_name) values 
+(101, "ramlal");
+insert into staff (staff_id, staff_name,department) values 
+(102, "chris" ,"tech");
+
+select * from staff;
