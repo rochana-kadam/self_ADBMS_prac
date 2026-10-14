@@ -61,3 +61,5 @@ insert into staff (staff_id, staff_name,department) values
 (102, "chris" ,"tech");
 
 select * from staff;
+
+-- level 5
